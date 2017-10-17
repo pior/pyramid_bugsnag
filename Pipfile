@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+
+pytest = "*"
+httpretty = "*"
+"e1839a8" = {path = ".", editable = true}
+webtest = "*"
+"pytest-cov" = "*"
+pylama = "*"
