@@ -1,0 +1,18 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7-dev"
+  - "pypy"
+  - "pypy3"
+
+install:
+  - pip install -U -e .
+  - pip install -U setuptools pipenv
+  - pipenv install --dev
+
+script:
+  - pipenv run py.test -v
+  - pipenv run pylama

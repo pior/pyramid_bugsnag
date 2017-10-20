@@ -1,6 +1,6 @@
 # Pyramid_bugsnag
 
-[![CircleCI](https://circleci.com/gh/pior/pyramid_bugsnag.svg?style=svg)](https://circleci.com/gh/pior/pyramid_bugsnag)
+[![Build](https://travis-ci.org/pior/pyramid_bugsnag.svg?branch=multi-python-ci-travis)](https://travis-ci.org/pior/pyramid_bugsnag)
 [![PyPI](https://img.shields.io/pypi/v/pyramid-bugsnag.svg)](https://pypi.python.org/pypi/pyramid-bugsnag)
 
 
