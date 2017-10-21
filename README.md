@@ -34,17 +34,22 @@ config.include('pyramid_bugsnag')
 The *Bugsnag* client can be configured through the Paster settings:
 
 ```ini
-bugsnag.api_key = ba10ba10ba10ba10ba10ba10ba10ba10
+bugsnag.api_key = 0123456789abcdef0123456789abcdef
 
-# All string and boolean options are supported:
 bugsnag.release_stage = production
+bugsnag.notify_release_stages = stage production
+
+bugsnag.ignore_classes =
+	KeyboardInterrupt
+	pyramid.httpexceptions.HTTPNotFound
+
 bugsnag.send_code = true
 ```
 
 But nothing stops you from configuring the client directly:
 
 ```python
-bugsnag.configure(api_key='ba10ba10ba10ba10ba10ba10ba10ba10')
+bugsnag.configure(api_key='0123456789abcdef0123456789abcdef')
 ```
 
 Full list of options on [docs.bugsnag.com](https://docs.bugsnag.com/platforms/python/other/configuration-options/)

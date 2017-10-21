@@ -46,12 +46,13 @@ def bugsnag_failure():
     httpretty.disable()
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='module')
 def test_app():
     # Settings needed to get bugsnag to actually send a notification
     settings = {
         'bugsnag.api_key': 'FAKE_KEY',
         'bugsnag.asynchronous': 'false',
+        'bugsnag.ignore_classes': 'pyramid.httpexceptions.HTTPNotFound',
     }
     config = Configurator(settings=settings)
     config.include('pyramid_bugsnag')
@@ -70,7 +71,7 @@ def test_ok(test_app, bugsnag_ok):
 def test_not_found(test_app, bugsnag_ok, capsys):
     test_app.get('/unknown_route', status=404)
 
-    assert httpretty.has_request()
+    assert not httpretty.has_request()
 
     out, err = capsys.readouterr()
     assert not err
