@@ -8,7 +8,7 @@ See `github repo <https://github.com/pior/pyramid_bugsnag>`_ for information.
 
 setup(
     name='pyramid_bugsnag',
-    version='0.4.dev0',
+    version='0.4',
     description='Pyramid extension to send exceptions to Bugsnag',
     long_description=description,
     classifiers=[
