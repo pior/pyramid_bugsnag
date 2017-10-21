@@ -13,3 +13,4 @@ httpretty = "*"
 webtest = "*"
 "pytest-cov" = "*"
 pylama = "*"
+"zest.releaser" = {extras = ["recommended"]}
