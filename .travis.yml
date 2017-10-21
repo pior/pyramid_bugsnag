@@ -1,12 +1,10 @@
 language: python
-python:
+python:  # Limiting this list to 5 will avoid job queuing
   - "2.7"
   - "3.4"
   - "3.5"
   - "3.6"
-  - "3.7-dev"
   - "pypy"
-  - "pypy3"
 
 install:
   - pip install -U -e .
