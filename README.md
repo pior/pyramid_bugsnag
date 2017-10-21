@@ -1,8 +1,11 @@
-# Pyramid_bugsnag
+# Pyramid extension for Bugsnag
 
+[![Version](https://img.shields.io/pypi/v/pyramid-bugsnag.svg)](https://pypi.python.org/pypi/pyramid-bugsnag)
+[![License](https://img.shields.io/pypi/l/pyramid-bugsnag.svg)](https://pypi.python.org/pypi/pyramid-bugsnag)
+[![PythonVersions](https://img.shields.io/pypi/pyversions/pyramid_bugsnag.svg)](https://pypi.python.org/pypi/pyramid-bugsnag)
 [![Build](https://travis-ci.org/pior/pyramid_bugsnag.svg?branch=multi-python-ci-travis)](https://travis-ci.org/pior/pyramid_bugsnag)
-[![PyPI](https://img.shields.io/pypi/v/pyramid-bugsnag.svg)](https://pypi.python.org/pypi/pyramid-bugsnag)
 
+Send error from a Pyramid application to [Bugsnag](https://www.bugsnag.com/)
 
 ## Installing
 
