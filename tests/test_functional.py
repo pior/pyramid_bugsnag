@@ -67,6 +67,15 @@ def test_ok(test_app, bugsnag_ok):
     assert not httpretty.has_request()
 
 
+def test_not_found(test_app, bugsnag_ok, capsys):
+    test_app.get('/unknown_route', status=404)
+
+    assert httpretty.has_request()
+
+    out, err = capsys.readouterr()
+    assert not err
+
+
 def test_raise_error(test_app, bugsnag_ok):
     test_app.get('/raise_error', status=500)
 

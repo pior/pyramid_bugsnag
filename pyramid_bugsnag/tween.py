@@ -10,6 +10,8 @@ def get_route_name(request):
     if request.matched_route:
         return request.matched_route.name
 
+    return 'no-matched-route'
+
 
 def extract_context(request):
     parts = [request.method, get_route_name(request)]
