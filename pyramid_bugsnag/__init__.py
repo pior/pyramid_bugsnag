@@ -1,12 +1,18 @@
 import bugsnag
 import pyramid
-from pyramid.settings import asbool
+from pyramid.settings import asbool, aslist
 
 
 BOOLEAN_SETTINGS = {
     'asynchronous',
     'auto_notify',
     'send_code',
+}
+
+LIST_SETTINGS = {
+    'ignore_classes',
+    'notify_release_stages',
+    'params_filters',
 }
 
 
@@ -17,6 +23,8 @@ def make_settings(settings):
             setting_key = key[len('bugsnag.'):]
             if setting_key in BOOLEAN_SETTINGS:
                 value = asbool(value)
+            if setting_key in LIST_SETTINGS:
+                value = aslist(value)
             bugsnag_settings[setting_key] = value
     return bugsnag_settings
 
