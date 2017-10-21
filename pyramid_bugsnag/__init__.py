@@ -23,7 +23,8 @@ def make_settings(settings):
 
 def includeme(config):
     settings = make_settings(config.registry.settings)
-    bugsnag.configure(**settings)
+    if settings:
+        bugsnag.configure(**settings)
 
     config.add_tween('pyramid_bugsnag.tween.tween_factory', over=[
         pyramid.tweens.EXCVIEW,
