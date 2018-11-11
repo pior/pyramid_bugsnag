@@ -1,5 +1,8 @@
+from typing import Any, Dict  # noqa
+
 import bugsnag
 import pyramid
+from pyramid.config import Configurator  # noqa
 from pyramid.settings import asbool, aslist
 
 
@@ -16,7 +19,7 @@ LIST_SETTINGS = {
 }
 
 
-def make_settings(settings):
+def make_settings(settings):  # type: (Dict[str, Any]) -> Dict[str, Any]
     bugsnag_settings = {}
     for key, value in settings.items():
         if key.startswith('bugsnag.'):
@@ -29,7 +32,7 @@ def make_settings(settings):
     return bugsnag_settings
 
 
-def includeme(config):
+def includeme(config):  # type: (Configurator) -> None
     settings = make_settings(config.registry.settings)
     if settings:
         bugsnag.configure(**settings)

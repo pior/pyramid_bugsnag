@@ -1,16 +1,25 @@
+dist: xenial
 language: python
-python:  # Limiting this list to 5 will avoid job queuing
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "pypy"
+
+matrix:
+  include:
+  - python: "3.5"
+    env: PYRAMID_VERSION=1.5
+  - python: "3.6"
+    env: PYRAMID_VERSION=1.5
+  - python: "3.6"
+    env: PYRAMID_VERSION=1.9
+  - python: "3.6"
+    env: PYRAMID_VERSION=1.10.1
+  - python: "3.7"
+    env: PYRAMID_VERSION=1.10.1
 
 install:
-  - pip install -U -e .
-  - pip install -U setuptools pipenv
+  - pip --disable-pip-version-check install -U setuptools pipenv
   - pipenv install --dev
+  - pip install -e .
 
 script:
+  - pipenv run mypy pyramid_bugsnag tests
   - pipenv run py.test -v
   - pipenv run pylama

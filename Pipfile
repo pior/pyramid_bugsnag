@@ -4,13 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pdbpp = "*"
 
 [dev-packages]
-
+pdbpp = "*"
+mypy = "*"
 pytest = "*"
 httpretty = "*"
-"e1839a8" = {path = ".", editable = true}
 webtest = "*"
 "pytest-cov" = "*"
 pylama = "*"
