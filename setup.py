@@ -30,7 +30,7 @@ setup(
     url="https://github.com/pior/pyramid_bugsnag",
     license="MIT",
     packages=find_packages(),
-    include_package_data=True,
+    package_data={'': ['py.typed']},
     zip_safe=False,
     install_requires=['pyramid>=1.5', 'bugsnag'],
 )
