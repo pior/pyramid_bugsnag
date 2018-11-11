@@ -2,14 +2,14 @@ from typing import Any, Callable, Dict  # noqa
 import logging
 
 import bugsnag
-import pyramid.registry
-import pyramid.response  # noqa
-import pyramid.request  # noqa
+from pyramid.registry import Registry  # noqa
+from pyramid.response import Response
+from pyramid.request import Request
 
 log = logging.getLogger('pyramid_bugsnag')
 
 
-def get_route_name(request):  # type: (pyramid.request.Request) -> str
+def get_route_name(request):  # type: (Request) -> str
     """Get a route name from URL Dispatch or Traversal."""
     if request.matched_route:
         return str(request.matched_route.name)
@@ -17,12 +17,12 @@ def get_route_name(request):  # type: (pyramid.request.Request) -> str
     return 'no-matched-route'
 
 
-def extract_context(request):  # type: (pyramid.request.Request) -> str
+def extract_context(request):  # type: (Request) -> str
     parts = [request.method, get_route_name(request)]
     return ' '.join(parts)
 
 
-def extract_user(request):  # type: (pyramid.request.Request) -> Dict[str, str]
+def extract_user(request):  # type: (Request) -> Dict[str, str]
     user_id = (
         request.unauthenticated_userid
         or request.remote_user
@@ -31,7 +31,7 @@ def extract_user(request):  # type: (pyramid.request.Request) -> Dict[str, str]
     return {'id': user_id}
 
 
-def extract_metadata(request):  # type: (pyramid.request.Request) -> Dict[str, Any]
+def extract_metadata(request):  # type: (Request) -> Dict[str, Any]
     return {
         'request': {
             'method': request.method,
@@ -53,7 +53,7 @@ EXCEPTION_REASON = {
 }
 
 
-def handle_error(request, exception):  # type: (pyramid.request.Request, Exception) -> None
+def handle_error(request, exception):  # type: (Request, Exception) -> None
     try:
         bugsnag.notify(
             exception,
@@ -66,11 +66,11 @@ def handle_error(request, exception):  # type: (pyramid.request.Request, Excepti
         log.exception("Error in Bugsnag tween")
 
 
-_HandlerType = Callable[[pyramid.request.Request], pyramid.response.Response]
+_HandlerType = Callable[[Request], Response]
 
 
-def tween_factory(handler, registry):  # type: (_HandlerType, pyramid.registry.Registry) -> _HandlerType
-    def tween(request):  # type: (pyramid.request.Request) -> pyramid.response.Response
+def tween_factory(handler, registry):  # type: (_HandlerType, Registry) -> _HandlerType
+    def tween(request):  # type: (Request) -> Response
         try:
             response = handler(request)
         except Exception as exc:

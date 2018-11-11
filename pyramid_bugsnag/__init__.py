@@ -2,7 +2,7 @@ from typing import Any, Dict  # noqa
 
 import bugsnag
 import pyramid
-import pyramid.config
+from pyramid.config import Configurator  # noqa
 from pyramid.settings import asbool, aslist
 
 
@@ -32,7 +32,7 @@ def make_settings(settings):  # type: (Dict[str, Any]) -> Dict[str, Any]
     return bugsnag_settings
 
 
-def includeme(config):  # type: (pyramid.config.Configurator) -> None
+def includeme(config):  # type: (Configurator) -> None
     settings = make_settings(config.registry.settings)
     if settings:
         bugsnag.configure(**settings)
