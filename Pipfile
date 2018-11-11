@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 pdbpp = "*"
+mypy = "*"
 
 [dev-packages]
-
 pytest = "*"
 httpretty = "*"
 "e1839a8" = {path = ".", editable = true}

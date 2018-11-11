@@ -1,10 +1,12 @@
+from typing import Iterator  # noqa
+
 from pyramid.config import Configurator
 import bugsnag
 import pytest
 
 
 @pytest.fixture(autouse=True)
-def reset_bugsnag():
+def reset_bugsnag():  # type: () -> Iterator[None]
     yield
     # Reset the default/global client instance and its configuration
     bugsnag.legacy.default_client = bugsnag.legacy.Client()
@@ -12,14 +14,14 @@ def reset_bugsnag():
     bugsnag.configuration = bugsnag.legacy.configuration
 
 
-def test_without_settings():
-    settings = {}
+def test_without_settings():  # type: () -> None
+    settings = {}  # type: dict
     config = Configurator(settings=settings)
     config.include('pyramid_bugsnag')
     config.commit()
 
 
-def test_with_settings():
+def test_with_settings():  # type: () -> None
     settings = {
         'bugsnag.api_key': 'POIPOI',
         'bugsnag.app_version': '1.2.3',
