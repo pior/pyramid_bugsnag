@@ -17,6 +17,7 @@ matrix:
 install:
   - pip --disable-pip-version-check install -U setuptools pipenv
   - pipenv install --dev
+  - pip install -e .
 
 script:
   - pipenv run mypy pyramid_bugsnag tests
