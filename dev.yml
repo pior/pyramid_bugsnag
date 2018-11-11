@@ -1,0 +1,14 @@
+up:
+  - python: 3.6.6
+  - pipfile
+  - python_develop
+
+commands:
+  typing:
+    run: mypy pyramid_bugsnag tests
+  test:
+    run: pytest -v tests
+  lint:
+    run: pylama
+  version:
+    run: python setup.py --version
